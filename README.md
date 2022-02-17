@@ -12,3 +12,9 @@ Examining the fallback function we notice that whoever calls the fallback functi
     owner = msg.sender;
   }
 ```
+In order to do that all we need to is call the contribute function inside our web console and contribute after that all we need to is call the fallback function and then withdraw the amount that belong to the owner with the withdraw function inside the contract 
+```
+  function withdraw() public onlyOwner {
+    owner.transfer(address(this).balance);
+  }
+  ```

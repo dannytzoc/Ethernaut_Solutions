@@ -31,3 +31,16 @@ After you just call the withdraw funnction and see that the contract got drained
 ```
 contract.withdraw()
 ```
+## Fallout 
+Fallout was an easy level. In this level the main exploit was in the constructor part. In the constructor there seemed to be a typo. Execpt of writing Fallout they instead had it as Fal1out. Having it like this it allowed an attacker to call the this function. If you would to see the code whoever called this function gets to be owner because of msg.sender
+
+```
+function Fal1out() public payable {
+    owner = msg.sender;
+    allocations[owner] = msg.value;
+  }
+```
+In order to solve this level all you need to do is go to the console and just call the function simply by typing 
+```
+contract.Fal1out()
+```

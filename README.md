@@ -49,3 +49,16 @@ When you a flip a coin you exepect a 50/50 chance of winning. You execpt either 
 
 In the case with coniflip you can easily write an advesary contract that is able to mimic the functionality to guess the outcome of the coinflip 
 The malicouse contract would be posted on this github label CoinFlipA.sol
+
+## Telephone 
+To pass this level of ethernaut you must claim ownership of the contract. In order to claim ownership of this contract you must first understand the difference between tx.origin and msg.sender. 
+
+tx.origin refers to the orgialn external contract that started the transaction while msg.sender refers to the immediate account. So in this level the main thing you have to focus on is in this if statment 
+```
+  if (tx.origin != msg.sender) {
+      owner = _owner;
+    }
+```
+You will need to write a malicouse contract. that calls chageowner within it. 
+
+

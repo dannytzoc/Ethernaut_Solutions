@@ -44,3 +44,8 @@ In order to solve this level all you need to do is go to the console and just ca
 ```
 contract.Fal1out()
 ```
+## CoinFlip 
+When you a flip a coin you exepect a 50/50 chance of winning. You execpt either tails or heads to popup. The problem with randomness or chance is that Etherum is a deterministic Turning machine. Determinitic is if there is only one possible action at each step. So in etherum a transaction needs to be confirmed by more than one node in the network. This means that every node must come to the same conclusion. 
+
+In the case with coniflip you can easily write an advesary contract that is able to mimic the functionality to guess the outcome of the coinflip 
+The malicouse contract would be posted on this github label CoinFlipA.sol

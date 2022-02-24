@@ -63,3 +63,4 @@ You will need to write a malicouse contract. that calls chageowner within it.
 
 The malicouse contract would be inside a file called TelephoneA.sol
 
+Create a malicouse contract that calls the changeowner function within the malciouse contract so it can bypass the if statment 

@@ -64,3 +64,27 @@ You will need to write a malicouse contract. that calls chageowner within it.
 The malicouse contract would be inside a file called TelephoneA.sol
 
 Create a malicouse contract that calls the changeowner function within the malciouse contract so it can bypass the if statment 
+
+## Token 
+Before Solidity version 0.8.0 solidity was susestibale to buffer overflow and buffer underflow. You could not use + , - , / , or *
+If you wanted to use arithmethic functions you have to use Safe Math library that can protect you with buffer overflow and underflow. Right now in the recent solidity you do not have to worry anymore. 
+
+```
+ function transfer(address _to, uint _value) public returns (bool) {
+    require(balances[msg.sender] - _value >= 0);
+    balances[msg.sender] -= _value;
+    balances[_to] += _value;
+    return true;
+  }
+
+```
+The problem stated you start off with 20 tokens so in order to beat this problem you will need to send a value of greater than 21 to cause a buffer overflow 
+For example 
+20-21 = -1 in normal circumstance but since it and uint it would cause a buffer overflow since negatives do not exist in uint 
+so it would be 255 
+To solve this just write this on the console and then just submit 
+```
+await contract.transfer("random_address", 21);
+
+```
+

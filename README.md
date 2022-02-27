@@ -105,3 +105,6 @@ Then you will use the send transaction function
 ```
 contract.sendTransaction({data:pwn_hash});
 ```
+## Force 
+The goal of this contract is to make the balance of FOrce contract more than zero. Things that might help is to look at fallback methods while researching fallabck methods I found a function that was intresting that it called selfdestruct. Selfdestruct is a function that lets you move all the ether that a smar contract has to another address. This level is fairly easy just make a malciouse contract and have it hold some ether and just use the self destruct funtion to send Force contract some ether. 
+The code would be in ForceA.sol

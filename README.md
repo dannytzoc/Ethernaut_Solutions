@@ -87,4 +87,21 @@ To solve this just write this on the console and then just submit
 await contract.transfer("random_address", 21);
 
 ```
+## Delegation 
+To solve this problem you first have to understand how delegatecall works. Delegatecall is a low level function. In the solidity docs it states 'When contract A executes delegatecall to contract B, B's code is excuted with contract A's storage, msg.sender and msg.value.' In other words Contract A is able to call function that Contrract B has. 
 
+In this contract it looks like Delegation has a fallback function that contains a delegatecall and if you where to look at Delegate Contract it looks like you can call the pwn function so you can switch owner of the account. 
+
+In the challange it also said to look at fallback methods and methods ID 
+Fallback methods is what I found in this forum https://ethereum.stackexchange.com/questions/23369/fallback-function-in-web3 
+The Method ID. This is derived as the first 4 bytes of the Keccak hash of the ASCII form of the signature baz(uint32,bool).
+
+To simply solve this problem all you need to do is bacially this two steps 
+First create variable that will hold the function hash 
+```
+var pwn_hash = web3.utils.sha3("pwn()");
+```
+Then you will use the send transaction function
+```
+contract.sendTransaction({data:pwn_hash});
+```

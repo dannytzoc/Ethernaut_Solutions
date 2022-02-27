@@ -119,4 +119,6 @@ Then you will convert it to ascii using web3 library
 web3.utils.hexToAscii("hex value");
 ```
 Finally you will unlock this challenge by calling 
+```
 contract.unlock("password");
+```

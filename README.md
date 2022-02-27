@@ -108,3 +108,15 @@ contract.sendTransaction({data:pwn_hash});
 ## Force 
 The goal of this contract is to make the balance of FOrce contract more than zero. Things that might help is to look at fallback methods while researching fallabck methods I found a function that was intresting that it called selfdestruct. Selfdestruct is a function that lets you move all the ether that a smar contract has to another address. This level is fairly easy just make a malciouse contract and have it hold some ether and just use the self destruct funtion to send Force contract some ether. 
 The code would be in ForceA.sol
+
+#Vaulet 
+Lesson for this challenge is that eveything is public in the blockchain. Do not store password in the blockchain how in this challenge does. This was fairly simple first you must get the storage location of contract password which is 1 so you will do a simple
+```
+web3.getStorageAt(contract.address,1);
+```
+Then you will convert it to ascii using web3 library
+```
+web3.utils.hexToAscii("hex value");
+```
+Finally you will unlock this challenge by calling 
+contract.unlock("password");

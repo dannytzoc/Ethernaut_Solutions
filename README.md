@@ -122,3 +122,10 @@ Finally you will unlock this challenge by calling
 ```
 contract.unlock("password");
 ```
+## King 
+When solving the king of ether solidity problem look at this part of the code hat is most explitable which is below 
+```
+    king.transfer(msg.value);
+```
+In this case the king has a fallback function that is able to reclaim ownership. So in our case we have to deploy a malicouse contract 
+that has a malicouse fallback function or no fallback function 

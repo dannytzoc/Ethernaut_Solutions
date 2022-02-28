@@ -128,4 +128,4 @@ When solving the king of ether solidity problem look at this part of the code ha
     king.transfer(msg.value);
 ```
 In this case the king has a fallback function that is able to reclaim ownership. So in our case we have to deploy a malicouse contract 
-that has a malicouse fallback function or no fallback function 
+that has a malicouse fallback function or no fallback function. KingA.sol is going to have solution.

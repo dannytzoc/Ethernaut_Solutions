@@ -129,3 +129,14 @@ When solving the king of ether solidity problem look at this part of the code ha
 ```
 In this case the king has a fallback function that is able to reclaim ownership. So in our case we have to deploy a malicouse contract 
 that has a malicouse fallback function or no fallback function. KingA.sol is going to have solution.
+
+## Reentrancy 
+A popular type of exploit in smart contract. Basic Idea of Reentrancy 
+Example 
+Suppose you have contract A and contract B. Contract A calls contract B and Contract B can call Contract A while Contract A is still executing. This technique can be used to drain smart contract. 
+This problem had me stuck for the most part because if you where to look at writeups or videos because this is such an old challenge the contract started off with 1 ether but in the newest version of this challenge it start off with .001 ether so to fix this I just donate enough ether to make it 2 ether 
+```
+await contract.donate("insert your attacker contract's address here",{value: ethers.toWei("whatever makes 2 ", "ether")})
+
+```
+After that all you need to do is to write a reentracy exploit on a malicouse contract. This would be ReenA.sol

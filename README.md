@@ -153,3 +153,42 @@ return answer
 ```
 Thats basically all you do in your malicouse code 
 
+## Privacy 
+The privacy challenge in Ethernaut is similar to the Force in which you have to understand etherum storage. 
+this is the part of the code you need to focus on 
+```
+bool public locked = true;
+  uint256 public ID = block.timestamp;
+  uint8 private flattening = 10;
+  uint8 private denomination = 255;
+  uint16 private awkwardness = uint16(now);
+  bytes32[3] private data;
+```
+Understanding ehterum storage you will now that locked will be at 0 
+public id at 1 flattening-awkwardness will be 2 and bytes [0] will be 3 bytes[1] will be 4 and bytes[2] wull be 5 and bytes[2] seesm to unlock it so to unlock it all we wll need to do is just this 
+```
+key = await web3.eth.getStorageAt(contract.address, 5)
+
+```
+This value would still be in 32bytes and we need to do it in 16bytes and to do that we need to slice it with a function like this 
+
+```
+key = key.slice(0, 34)
+await contract.unlock(key) // this should solve it 
+
+```
+That should solve your problem 
+
+## Gatekeeper One 
+This is one of the difficult challenges i ran into because the gate one is pretty easy but passing gate two was such a pain.
+Gate one was basically just writing an intemediary contract because of tx.origin and msg.sender
+
+The next part is pretty tricky and honestly seems kinda of waste because it makes it very hard to understand gas operation in solidity so im leave this part blank 
+
+Passing gate 3 is basically a bit of bit mask operation 
+
+The code will be avaible in GateKeeperOne.sol
+
+
+
+

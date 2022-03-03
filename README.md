@@ -196,7 +196,16 @@ So the answer for that would be
 ```
 uint64(_gateKey) = uint64(keccak256(msg.sender)) ^ uint64(0) — 1)
 ```
-The code would un gatekeepertwo.sol
+The code would in gatekeepertwo.sol
 
+## Naught Coin 
+With naught coin its bascially poor erc20 inheritcance. They trusted to much in ERC20. If you where to look at the erc20 it looks like transferfrom you can still use and transfer you cant use since it has a modifier. So in this mode you dont need to write code all you need to do is just approve yourself and use the transferfrom function 
+To do that all you do is 
+```
+await contract.approve(player,'amount of tokens');
+```
 
-
+```
+await contract.transfer(player,'random address', 'amount of tokens');
+```
+Then submit it

@@ -189,6 +189,14 @@ Passing gate 3 is basically a bit of bit mask operation
 
 The code will be avaible in GateKeeperOne.sol
 
+## Gatekeeper Two 
+Gatekeeper Two is a lot easier to solve because yu dont have to worry to debuginng and find the amount of gas in contract. 
+So in this level you are going to need a middle man contract like before to pass the first gate. In the second gate it looking for your calling contract size to be size zero and in order to do that you can just call the function inside the constructor and to solve gate 3 its basically understanding xor functionality which is basically a ^ b = c which is b = a ^c.
+So the answer for that would be 
+```
+uint64(_gateKey) = uint64(keccak256(msg.sender)) ^ uint64(0) — 1)
+```
+The code would un gatekeepertwo.sol
 
 
 

@@ -214,4 +214,7 @@ Then submit it
 This challenges uses the idea of storage with solodity and delegate call with solidity. 
 In order to pass this level all you need to do is match up the storage spaces with that of the contract and when you call delegate call all you need to do is just switch the owner to your wallet and you shoould be owner wallet. delegeate call seems to call a function called setTime(uint256) all you need to do in your middle wallet is to rename the function and you should be pass  owner = msg.sender; inside the function call the function on remix and sumbit the instance and that about it. The code would be in presa
 
-
+## Recovery 
+This is a very easy level all you have to do is recover a contract address. There is two ways to do this but the simple way is by looking at etherscan inside internal txns and click on the contract and you should get the lost contract address. The other way is to calcualte the address by using this function 
+address = rightmost_20_bytes(keccak(RLP(sender address, nonce)))
+I used etherscan becuase it was easier 

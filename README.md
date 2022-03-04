@@ -218,3 +218,18 @@ In order to pass this level all you need to do is match up the storage spaces wi
 This is a very easy level all you have to do is recover a contract address. There is two ways to do this but the simple way is by looking at etherscan inside internal txns and click on the contract and you should get the lost contract address. The other way is to calcualte the address by using this function 
 address = rightmost_20_bytes(keccak(RLP(sender address, nonce)))
 I used etherscan becuase it was easier 
+
+## Magic Number
+It also had to do with etherum opcode virtualization you are supposed to have a good understading of evm opdcode. 
+The answer is basically 
+```
+bytecode = '600a600c600039600a6000f3602a60505260206050f3'
+
+txn = await web3.eth.sendTransaction({from: player, data: bytecode})
+```
+```
+solverAddr = txn.contractAddress
+```
+```
+await contract.setSolver(solverAddr)
+```

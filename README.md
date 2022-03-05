@@ -265,3 +265,6 @@ then hijack alien codex
 ```
 await contract.revise(i, content)
 ```
+## Denial 
+The goal of this challnge is to Deny funds. The very first step is to make an attacking contract and inside you will need to add a fallback function. Then inside the callback function you while write an infiite loop to consume all th gas. Finally you will deploy your contract and set address to your attacker contract. 
+The reason on why this work is because the external call doesnt check the return value is susceptible to the costly loop to consume all gas. 

